@@ -35,7 +35,7 @@ public class SmsInboxPlugin extends CordovaPlugin {
 	public final String ACTION_HAS_SMS_POSSIBILITY = "HasSMSPossibility";
 	public final String ACTION_RECEIVE_SMS = "StartReception";
 	public final String ACTION_STOP_RECEIVE_SMS = "StopReception";
-	
+	public final String ACTION_SET_BROADCAST = "SetBroadcast";	
 	private CallbackContext callback_receive;
 	private SmsReceiver smsReceiver = null;
 	private boolean isReceiving = false;
@@ -110,6 +110,15 @@ public class SmsInboxPlugin extends CordovaPlugin {
 					PluginResult.Status.OK);
 			callbackContext.sendPluginResult(pluginResult);
 			
+			return true;
+		}
+		else if(action.equals(ACTION_SET_BROADCAST)){
+			if(this.smsReceiver != null) {
+				smsReceiver.broadcast(arg1.getBoolean(0));
+			}
+
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.NO_RESULT));
+
 			return true;
 		}
 
