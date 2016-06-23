@@ -50,6 +50,10 @@ cordova.define("cordova/plugin/smsinboxplugin", function(require, exports, modul
     return exec(successCallback, failureCallback, 'SmsInboxPlugin', 'StopReception', []);
   }
 
+  SmsInboxPlugin.prototype.setBroadcast = function(flag, successCallback,failureCallback) {
+    return exec(successCallback, failureCallback, 'SmsInboxPlugin', 'SetBroadcast', [flag]);
+  }
+
   var smsinboxplugin = new SmsInboxPlugin();
   module.exports = smsinboxplugin;
 });
